@@ -30,9 +30,7 @@ def index(request):
             return render(request, 'users/index.html', {'error': error})
 
     else:
-        return HttpResponseRedirect(reverse('index'))
-
-    return render(request, 'users/index.html')
+        return render(request, 'users/index.html')
 
 
 def signup(request):
