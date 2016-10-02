@@ -30,6 +30,8 @@ urlpatterns = [
     url(r'^flight/search', flight_search),
     url(r'^flight/overview', flight_overview),
     url(r'^flight/car_search', car_search),
+    url(r'^flight/car_search', car_search),
+    url(r'^flight/hotel_search', hotel_search),
 
     # Users
     url(r'^user/signup$', signup ,name='signup'),
