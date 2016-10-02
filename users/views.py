@@ -7,6 +7,16 @@ from django.contrib.auth import login, authenticate
 
 from users.models import SIAUser
 
+def test(request):
+    """
+    To test template
+    :param request:
+    :return:
+    """
+
+    return render(request, 'base.html')
+
+
 def index(request):
     """
     Main entry for the website, also handling login request

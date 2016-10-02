@@ -20,11 +20,19 @@ from bookings.views import *
 from users.views import *
 
 urlpatterns = [
+
     url(r'^admin/', admin.site.urls),
+
+    # Index
+    url(r'^$', index ,name='index'),
+
+    # Flights
     url(r'^flight/search', flight_search),
     url(r'^flight/overview', flight_overview),
     url(r'^flight/car_search', car_search),
-    url(r'^signup$', signup ,name='signup'),
-    url(r'^$', index ,name='index'),
-    url(r'^profile$', profile ,name='profile'),
+
+    # Users
+    url(r'^user/signup$', signup ,name='signup'),
+    url(r'^user/profile$', profile ,name='profile'),
+    url(r'^testtemplate$', test, name='test')
 ]
