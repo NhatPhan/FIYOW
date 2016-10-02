@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from bookings import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^flight/search', views.flight),
+    url(r'^flight/overview', views.overview),
+    url(r'^flight/car_search', views.carSearch)
 ]
