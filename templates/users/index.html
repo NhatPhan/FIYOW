@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    JUST FOR TESTING VIEWS
+
+        <form action="" method="POST">{% csrf_token %}
+      Username:<br>
+      <input type="text" name="username"><br>
+      Password:<br>
+      <input type="password" name="password"><br><br>
+      <input type="submit" value="Login">
+    </form>
+    {{ error }}
+
+    <a href="{% url 'signup' %}"> Signup</a>
+</body>
+</html>
