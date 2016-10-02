@@ -23,6 +23,7 @@ def index(request):
 
         if user is not None:
             login(request, user)
+            return HttpResponseRedirect(reverse('profile'))
 
         else:
             # Render with error message
@@ -46,7 +47,7 @@ def signup(request):
         # TODO redirect to profile page
 
     if not request.method == 'POST':
-        return render(request, 'user/signup.html')
+        return render(request, 'users/signup.html')
 
     password = request.POST.get('password')
     username = request.POST.get('username')
@@ -85,4 +86,4 @@ def profile(request):
     user = request.user
 
     sia_user = get_object_or_404(SIAUser, user=user)
-    return render(request, 'user/profile.html', {'siaUser':sia_user})
+    return render(request, 'users/profile.html', {'siaUser':sia_user})
