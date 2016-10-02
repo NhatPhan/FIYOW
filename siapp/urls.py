@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from bookings import views
+from bookings.views import *
 from users.views import *
 
 urlpatterns = [
@@ -27,9 +27,9 @@ urlpatterns = [
     url(r'^$', index ,name='index'),
 
     # Flights
-    url(r'^flight/search', views.flight),
-    url(r'^flight/overview', views.overview),
-    url(r'^flight/car_search', views.carSearch),
+    url(r'^flight/search', flightSearch),
+    url(r'^flight/overview', flightOverview),
+    url(r'^flight/car_search', carSearch),
 
     # Users
     url(r'^user/signup$', signup ,name='signup'),

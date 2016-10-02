@@ -9,7 +9,7 @@ import requests, json
 from string import Template
 
 @api_view(['POST'])
-def flight(request):
+def flightSearch(request):
     """
     departureDate(required)
     returnDate
@@ -48,7 +48,7 @@ def flight(request):
 
 
 @api_view(['POST'])
-def overview(request):
+def flightOverview(request):
     flightData = request.data
     startDate = flightData['startDate'] if 'startDate' in flightData.keys() else '' 
     dayCount = int(flightData['dayCount']) if 'dayCount' in flightData.keys() else 10
