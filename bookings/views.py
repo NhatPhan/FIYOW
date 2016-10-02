@@ -9,7 +9,7 @@ import requests, json
 from string import Template
 
 @api_view(['POST'])
-def flightSearch(request):
+def flight_search(request):
     """
     departureDate(required)
     returnDate
@@ -22,38 +22,38 @@ def flightSearch(request):
     maxOfferCount
     """
 
-    flightData = request.data
-    departureAirport = 'departureAirport=' + flightData['departureAirport'] + '&' if 'departureAirport' in flightData.keys() else ''
-    arrivalAirport = 'arrivalAirport=' + flightData['arrivalAirport'] + '&' if 'arrivalAirport' in flightData.keys() else '' 
-    departureDate = 'departureDate=' + flightData['departureDate'] + '&' if 'departureDate' in flightData.keys() else '' 
-    returnDate = 'returnDate=' + flightData['returnDate'] + '&' if 'returnDate' in flightData.keys() else ''
-    numberOfAdultParameters = 'numberOfAdultParameters=' + flightData['numberOfAdultParameters'] + '&' if 'numberOfAdultParameters' in flightData.keys() else ''
-    childTravelerAge = 'childTravelerAge=' + flightData['childTravelerAge'] + '&' if 'childTravelerAge' in flightData.keys() else ''
-    infantSeatingInLap = 'infantSeatingInLap=' + flightData['infantSeatingInLap'] + '&' if 'infantSeatingInLap' in flightData.keys() else ''
-    correlationId = 'correlationId=' + flightData['correlationId'] + '&' if 'correlationId' in flightData.keys() else ''
-    maxOfferCount = 'maxOfferCount=' + flightData['maxOfferCount'] + '&' if 'maxOfferCount' in flightData.keys() else ''
-    s = Template('http://terminal2.expedia.com/x/mflights/search?$departureAirport$arrivalAirport$departureDate$returnDate$numberOfAdultParameters$childTravelerAge$infantSeatingInLap$correlationId$maxOfferCount')
-    search = s.substitute(departureAirport=departureAirport, 
-        arrivalAirport=arrivalAirport,
-        departureDate=departureDate,
-        returnDate=returnDate,
-        numberOfAdultParameters=numberOfAdultParameters,
-        childTravelerAge=childTravelerAge,
-        infantSeatingInLap=infantSeatingInLap,
-        correlationId=correlationId,
-        maxOfferCount=maxOfferCount) + 'prettyPrint=true&apikey=xVKsMHTYGMyM5xXp2iyIABHnbx3j8l44'
+    flight_data = request.data
+    departure_airport = 'departureAirport=' + flight_data['departureAirport'] + '&' if 'departureAirport' in flight_data.keys() else ''
+    arrival_airport = 'arrivalAirport=' + flight_data['arrivalAirport'] + '&' if 'arrivalAirport' in flight_data.keys() else ''
+    departure_date = 'departureDate=' + flight_data['departureDate'] + '&' if 'departureDate' in flight_data.keys() else ''
+    return_date = 'returnDate=' + flight_data['returnDate'] + '&' if 'returnDate' in flight_data.keys() else ''
+    number_of_adult_travellers = 'numberOfAdultTravellers=' + flight_data['numberOfAdultTravellers'] + '&' if 'numberOfAdultTravellers' in flight_data.keys() else ''
+    child_traveler_age = 'childTravelerAge=' + flight_data['childTravelerAge'] + '&' if 'childTravelerAge' in flight_data.keys() else ''
+    infant_seating_in_lap = 'infantSeatingInLap=' + flight_data['infantSeatingInLap'] + '&' if 'infantSeatingInLap' in flight_data.keys() else ''
+    correlation_id = 'correlationId=' + flight_data['correlationId'] + '&' if 'correlationId' in flight_data.keys() else ''
+    max_offer_count = 'maxOfferCount=' + flight_data['maxOfferCount'] + '&' if 'maxOfferCount' in flight_data.keys() else ''
+    s = Template('http://terminal2.expedia.com/x/mflights/search?$departureAirport$arrivalAirport$departureDate$returnDate$numberOfAdultTravellers$childTravelerAge$infantSeatingInLap$correlationId$maxOfferCount')
+    search = s.substitute(departureAirport=departure_airport,
+        arrivalAirport=arrival_airport,
+        departureDate=departure_date,
+        returnDate=return_date,
+        numberOfAdultTravellers=number_of_adult_travellers,
+        childTravelerAge=child_traveler_age,
+        infantSeatingInLap=infant_seating_in_lap,
+        correlationId=correlation_id,
+        maxOfferCount=max_offer_count) + 'prettyPrint=true&apikey=xVKsMHTYGMyM5xXp2iyIABHnbx3j8l44'
     response = requests.get(search)
     content = json.loads(response.content)
     return Response(content, status=response.status_code)
 
 
 @api_view(['POST'])
-def flightOverview(request):
-    flightData = request.data
-    startDate = flightData['startDate'] if 'startDate' in flightData.keys() else '' 
-    dayCount = int(flightData['dayCount']) if 'dayCount' in flightData.keys() else 10
-    origin = flightData['origin'] if 'origin' in flightData.keys() else '' 
-    destination = flightData['destination'] if 'destination' in flightData.keys() else '' 
+def flight_overview(request):
+    flight_data = request.data
+    start_date = flight_data['startDate'] if 'startDate' in flight_data.keys() else ''
+    day_count = int(flight_data['dayCount']) if 'dayCount' in flight_data.keys() else 10
+    origin = flight_data['origin'] if 'origin' in flight_data.keys() else ''
+    destination = flight_data['destination'] if 'destination' in flight_data.keys() else ''
     
     post_data = {
         "MessageHeader": { "ClientInfo": { "DirectClientName": "Hackathon"}, "TransactionGUID": ""},
@@ -68,10 +68,10 @@ def flightOverview(request):
         }
     }
     
-    if startDate != "" and dayCount > 0: # checking dayCount to avoid user setting dayCount to 0 or negative number on purpose
+    if start_date != "" and day_count > 0: # checking dayCount to avoid user setting dayCount to 0 or negative number on purpose
         post_data["FareCalendar"] = {
-            "StartDate" : startDate,
-            "DayCount" : dayCount 
+            "StartDate" : start_date,
+            "DayCount" : day_count
         }
         
         
@@ -86,7 +86,7 @@ def flightOverview(request):
     return Response(content, status=response.status_code)
 
 @api_view(['POST'])
-def carSearch(request):
+def car_search(request):
     """
     pickupdate
     dropoffdate
@@ -99,22 +99,22 @@ def carSearch(request):
     """
     
     
-    flightData = request.data
-    pickupdate = 'pickupdate=' + flightData['pickupdate'] + '&' if 'pickupdate' in flightData.keys() else ''
-    dropoffdate = 'dropoffdate=' + flightData['dropoffdate'] + '&' if 'dropoffdate' in flightData.keys() else ''
-    pickuplocation = 'pickuplocation=' + flightData['pickuplocation'] + '&' if 'pickuplocation' in flightData.keys() else ''
-    dropofflocation = 'dropofflocation=' + flightData['dropofflocation'] + '&' if 'dropofflocation' in flightData.keys() else ''
-    sort = 'sort=' + flightData['sort'] + '&' if 'sort' in flightData.keys() else ''
-    limit = 'limit=' + flightData['limit'] + '&' if 'limit' in flightData.keys() and flightData['limit'] > 0 else 10
-    suppliers = 'suppliers=' + flightData['suppliers'] + '&' if 'suppliers' in flightData.keys() else ''
-    classes = 'classes=' + flightData['classes'] + '&' if 'classes' in flightData.keys() else ''
+    flight_data = request.data
+    pickup_date = 'pickupdate=' + flight_data['pickupdate'] + '&' if 'pickupdate' in flight_data.keys() else ''
+    drop_off_date = 'dropoffdate=' + flight_data['dropoffdate'] + '&' if 'dropoffdate' in flight_data.keys() else ''
+    pickup_location = 'pickuplocation=' + flight_data['pickuplocation'] + '&' if 'pickuplocation' in flight_data.keys() else ''
+    dropoff_location = 'dropofflocation=' + flight_data['dropofflocation'] + '&' if 'dropofflocation' in flight_data.keys() else ''
+    sort = 'sort=' + flight_data['sort'] + '&' if 'sort' in flight_data.keys() else ''
+    limit = 'limit=' + flight_data['limit'] + '&' if 'limit' in flight_data.keys() and flight_data['limit'] > 0 else 10
+    suppliers = 'suppliers=' + flight_data['suppliers'] + '&' if 'suppliers' in flight_data.keys() else ''
+    classes = 'classes=' + flight_data['classes'] + '&' if 'classes' in flight_data.keys() else ''
     
     s = Template("http://terminal2.expedia.com:80/x/cars/search?$pickupdate$dropoffdate$pickuplocation$dropofflocation$sort$limit$suppliers$classes")
     
-    search = s.substitute(pickupdate=pickupdate, 
-        dropoffdate=dropoffdate,
-        pickuplocation=pickuplocation,
-        dropofflocation=dropofflocation,
+    search = s.substitute(pickupdate=pickup_date,
+        dropoffdate=drop_off_date,
+        pickuplocation=pickup_location,
+        dropofflocation=dropoff_location,
         sort=sort,
         limit=limit,
         suppliers=suppliers,

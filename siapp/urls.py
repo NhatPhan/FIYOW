@@ -21,9 +21,9 @@ from users.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^flight/search', flightSearch),
-    url(r'^flight/overview', flightOverview),
-    url(r'^flight/car_search', carSearch),
+    url(r'^flight/search', flight_search),
+    url(r'^flight/overview', flight_overview),
+    url(r'^flight/car_search', car_search),
     url(r'^signup$', signup ,name='signup'),
     url(r'^$', index ,name='index'),
     url(r'^profile$', profile ,name='profile'),
