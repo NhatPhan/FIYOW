@@ -5,3 +5,4 @@ from hotel_search import hotel_search
 from hotel_offers import hotel_offers
 from hotel_info import hotel_info
 from package_search import package_search
+from activities import activities_search, activity_details

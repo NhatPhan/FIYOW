@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     # Index
-    url(r'^$', index ,name='index'),
+    url(r'^$', index, name='index'),
 
     # Expedia APIs
     url(r'^expedia/flight_search', flight_search),
@@ -35,9 +35,11 @@ urlpatterns = [
     url(r'^expedia/hotel_offers', hotel_offers),
     url(r'^expedia/hotel_info', hotel_info),
     url(r'^expedia/package_search', package_search),
+    url(r'^expedia/activities_search', activities_search),
+    url(r'^expedia/activity_details', activity_details),
 
     # Users
-    url(r'^user/signup$', signup ,name='signup'),
-    url(r'^user/profile$', profile ,name='profile'),
+    url(r'^user/signup$', signup, name='signup'),
+    url(r'^user/profile$', profile, name='profile'),
     url(r'^testtemplate$', test, name='test')
 ]
