@@ -26,14 +26,15 @@ urlpatterns = [
     # Index
     url(r'^$', index ,name='index'),
 
-    # Flights
-    url(r'^flight/search', flight_search),
-    url(r'^flight/overview', flight_overview),
-    url(r'^flight/car_search', car_search),
-    url(r'^flight/car_search', car_search),
-    url(r'^flight/hotel_search', hotel_search),
-    url(r'^flight/hotel_offers', hotel_offers),
-    url(r'^flight/hotel_info', hotel_info),
+    # Expedia APIs
+    url(r'^expedia/flight_search', flight_search),
+    url(r'^expedia/flight_overview', flight_overview),
+    url(r'^expedia/car_search', car_search),
+    url(r'^expedia/car_search', car_search),
+    url(r'^expedia/hotel_search', hotel_search),
+    url(r'^expedia/hotel_offers', hotel_offers),
+    url(r'^expedia/hotel_info', hotel_info),
+    url(r'^expedia/package_search', package_search),
 
     # Users
     url(r'^user/signup$', signup ,name='signup'),
