@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^expedia/package_search', package_search),
     url(r'^expedia/activities_search', activities_search),
     url(r'^expedia/activity_details', activity_details),
+    url(r'^expedia/unreal_deals', unreal_deals),
 
     # Users
     url(r'^user/signup$', signup, name='signup'),
