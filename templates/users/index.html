@@ -25,12 +25,14 @@
   <blockquote>"Some catchy quote here about how awesome and revolutionized the app is"</blockquote>
 
   <div class = "button-container">
-    <div><form action="">
+    <div><form action="" method="POST">{% csrf_token %}
       <input class="ghost-input" type="text" name="username" placeholder="Username"><br>
-      <input class="ghost-input" type="password" name="password" placeholder="**********"><br>
-    </form></div>
-    <div> <a href="/about.html"> <button class="btn-lg ghost-button ghost-button">LOG IN</button> </a> </div>
-    <div> <a href="/hire.html"> <button class="btn-lg ghost-button ghost-button">SIGN UP</button> </a> </div>
+      <input class="ghost-input" type="password" name="password" placeholder="Password"><br>
+      <div> <a href="{% url 'index' %}"> <button type="submit" class="btn-lg ghost-button ghost-button">LOG IN</button> </a> </div>
+    </form>
+        <div> <a href="{% url 'signup' %}"> <button class="btn-lg ghost-button ghost-button">SIGN UP</button> </a> </div>
+    </div>
+
   </div>
 </div>
       <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>

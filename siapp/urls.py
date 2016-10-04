@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^$', index, name='index'),
 
     # Expedia APIs
-    url(r'^expedia/flight_search', flight_search),
+    url(r'^expedia/flight_search', flight_search, name='flight-search'),
     url(r'^expedia/flight_overview', flight_overview),
     url(r'^expedia/car_search', car_search),
     url(r'^expedia/car_search', car_search),

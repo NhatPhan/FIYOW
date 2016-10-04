@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head %}
+  <title>SIA Challenge</title>
+{% endblock head %}
+
+{% block body %}
+
+  <div class="row">
+    <form class="col s12" method="POST" ectype="application/json">{% csrf_token %}
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input name="departureAirport" placeholder="Placeholder" id="departureAirport" type="text" class="validate">
+          <label for="departureAirport">From</label>
+        </div>
+          <input name="departureDate" type="date" class="datepicker col s6">
+        <div class="input-field col s6">
+          <input name="arrivalAirport" id="arrivalAirport" type="text" class="validate">
+          <label for="arrivalAirport">To</label>
+        </div>
+      </div>
+
+         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+  </div>
+
+
+<script type="text/javascript">
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year
+        format: 'yyyy-mm-dd',
+    });
+</script>
+
+{% endblock body %}
+

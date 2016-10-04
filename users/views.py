@@ -14,7 +14,7 @@ def test(request):
     :return:
     """
 
-    return render(request, 'base.html')
+    return render(request, 'users/template.html')
 
 
 def index(request):
@@ -33,7 +33,7 @@ def index(request):
 
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse('profile'))
+            return HttpResponseRedirect(reverse('flight-search'))
 
         else:
             # Render with error message

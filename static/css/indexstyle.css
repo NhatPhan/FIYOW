@@ -110,6 +110,17 @@ h1 {
   color: #000;
 }
 
+.ghost-link {
+  color: #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: i;
+  height: 2em;
+  width: 25.5%;
+  font-size: 1.5em;
+  font-weight: lighter;
+}
+
 .button-container {
   margin-left: auto;
   margin-right: auto;
