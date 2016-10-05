@@ -11,6 +11,15 @@ nav .brand-logo {
   color: #444;
 }
 
+#side-nav-button {
+  float: left;
+  z-index: 3;
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  color: white;
+}
+
 p {
   line-height: 2rem;
 }
@@ -20,10 +29,10 @@ p {
 }
 
 .parallax-container {
-  min-height: 380px;
+  min-height: 180px;
   line-height: 0;
   height: auto;
-  color: rgba(255,255,255,.9);
+  color: rgba(255,255,255, 0.9);
 }
   .parallax-container .section {
     width: 100%;
@@ -54,4 +63,9 @@ p {
 
 footer.page-footer {
   margin: 0;
+}
+
+.flight-form {
+  width: 50%;
+  margin: auto;
 }
