@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'bookings',
     'baggages',
     "geoposition",
+    'directions',
 ]
 
 MIDDLEWARE_CLASSES = [
