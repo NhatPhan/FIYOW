@@ -17,7 +17,7 @@ nav .brand-logo {
   position: absolute;
   left: 15px;
   top: 15px;
-  color: white;
+  color: #9e9e9e;
 }
 
 p {
@@ -68,4 +68,6 @@ footer.page-footer {
 .flight-form {
   width: 50%;
   margin: auto;
+  color: black;
+  margin-top: 60px;
 }

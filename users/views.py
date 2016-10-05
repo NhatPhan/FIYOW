@@ -102,3 +102,21 @@ def profile(request):
 
     sia_user = get_object_or_404(SIAUser, user=user)
     return render(request, 'users/profile.html', {'siaUser':sia_user, 'userForm':userForm, 'locationForm':locationForm })
+
+
+def trip(request):
+    """
+    Profile dashboard of user
+    :param request:
+    :return:
+    """
+
+    # Authentication check
+    if not request.user.is_authenticated():
+        # TODO redirect to error page
+        return redirect(reverse('index'))
+
+    user = request.user
+
+    sia_user = get_object_or_404(SIAUser, user=user)
+    return render(request, 'users/trip.html', {'siaUser':sia_user})
