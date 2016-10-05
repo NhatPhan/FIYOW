@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 
+from users.forms import SIAUserForm, LocationFormSet
 from users.models import SIAUser
 
 def test(request):
@@ -14,7 +15,7 @@ def test(request):
     :return:
     """
 
-    return render(request, 'base.html')
+    return render(request, 'users/template.html')
 
 
 def index(request):
@@ -33,7 +34,7 @@ def index(request):
 
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse('profile'))
+            return HttpResponseRedirect(reverse('flight-search'))
 
         else:
             # Render with error message
@@ -94,6 +95,10 @@ def profile(request):
         return redirect(reverse('index'))
 
     user = request.user
+    sia_user = SIAUser.objects.get(user=user)
+
+    userForm = SIAUserForm(request.POST,request.FILES,instance=sia_user)
+    locationForm = LocationFormSet(request.POST,request.FILES,instance=sia_user)
 
     sia_user = get_object_or_404(SIAUser, user=user)
-    return render(request, 'users/profile.html', {'siaUser':sia_user})
+    return render(request, 'users/profile.html', {'siaUser':sia_user, 'userForm':userForm, 'locationForm':locationForm })

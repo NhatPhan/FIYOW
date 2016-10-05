@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'users',
     'bookings',
     'baggages',
+    "geoposition",
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -135,3 +136,5 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = (
     STATIC_DIR,
 )
+
+GEOPOSITION_GOOGLE_MAPS_API_KEY  = 'AIzaSyArB82fVC8XkEhDgY0_lX1s5F4YW4QqWKI'

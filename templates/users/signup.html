@@ -1,30 +1,41 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="utf-8">
+  <title>SIA CHALLENGE</title>
+  <meta name="description" content="">
+  <meta name="author" content="huy">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='https://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+  <link href="{% static 'css/indexstyle.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-    For user to signup
+<div id="bg">
+  <img src="{% static 'img/background.jpg' %}" alt="">
 
-
-    <form action="", method="POST">{% csrf_token %}
-      Username:<br>
-      <input type="text" name="username"><br>
-      Password:<br>
-      <input type="password" name="password"><br><br>
-         Firstname:<br>
-      <input type="text" name="firstname"><br><br>
-         Lastname:<br>
-      <input type="text" name="lastname"><br><br>
-        Email:<br>
-      <input type="text" name="email"><br><br>
-      <input type="submit" value="Signup">
+</div>
+<div class="overlay"> </div>
+<div class="container">
+	<h1>BE A MEMBER</h1>
+  <blockquote>And prepared to be wowed, basically</blockquote>
+    <div class = "button-container">
+    <div>
+      <a class="ghost-link" href="{% url 'index' %}"> Have an account? Login </a>
+      <form action="" method="POST">{% csrf_token %}
+      <input class="ghost-input" type="text" name="username" placeholder="Username"><br>
+      <input class="ghost-input" type="password" name="password" placeholder="Password"><br>
+      <input class="ghost-input" type="text" name="firstname" placeholder="Firs Name"><br>
+      <input class="ghost-input" type="text" name="lastname" placeholder="Last Name"><br>
+      <input class="ghost-input" type="text" name="email" placeholder="Email Address"><br>
+      <div> <a href="{% url 'signup' %}"> <button type="submit" class="btn-lg ghost-button ghost-button">SIGN UP</button> </a> </div>
     </form>
+    </div> </div>
 
-
-    <a href="{% url 'index' %}"> Have an account? Login </a>
-
-
+      <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
 </body>
 </html>

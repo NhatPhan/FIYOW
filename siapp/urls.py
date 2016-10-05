@@ -18,6 +18,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from bookings.views import *
 from users.views import *
+from directions.views import *
 
 urlpatterns = [
 
@@ -27,7 +28,7 @@ urlpatterns = [
     url(r'^$', index, name='index'),
 
     # Expedia APIs
-    url(r'^expedia/flight_search', flight_search),
+    url(r'^expedia/flight_search', flight_search, name='flight-search'),
     url(r'^expedia/flight_overview', flight_overview),
     url(r'^expedia/car_search', car_search),
     url(r'^expedia/car_search', car_search),
@@ -42,5 +43,8 @@ urlpatterns = [
     # Users
     url(r'^user/signup$', signup, name='signup'),
     url(r'^user/profile$', profile, name='profile'),
-    url(r'^testtemplate$', test, name='test')
+    url(r'^testtemplate$', test, name='test'),
+
+    # Direction
+    url(r'^map$', poi_list , name='poi_list'),
 ]

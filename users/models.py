@@ -15,6 +15,8 @@ class SIAUser(models.Model):
     residence_country = models.CharField(max_length=200, null=True)
     nationality = models.CharField(max_length=200, null=True)
     dob = models.DateField(null=True, verbose_name="Date of birth")
+    language = models.CharField(null=True, max_length=200)
+
 
     @classmethod
     def create(cls, user, first_name, last_name, postal_address=None, residence_country=None, nationality=None, dob=None):
@@ -22,4 +24,3 @@ class SIAUser(models.Model):
                 postal_address=postal_address, residence_country=residence_country,
                  nationality=nationality, dob=dob)
         return SIAUser
-
