@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'geoposition',
     'directions',
     'bootstrapform',
+    'channels',
+    'chat',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -63,6 +65,18 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'siapp.urls'
+
+redis_host = os.environ.get('REDIS_HOST', '127.0.0.1')
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'asgi_redis.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [(redis_host, 6379)],
+        },
+        'ROUTING': 'siapp.routing.channel_routing',
+    },
+}
 
 TEMPLATES = [
     {
@@ -140,8 +154,11 @@ STATICFILES_DIRS = (
 )
 
 GEOPOSITION_GOOGLE_MAPS_API_KEY  = 'AIzaSyArB82fVC8XkEhDgY0_lX1s5F4YW4QqWKI'
+<<<<<<< HEAD
 
 GEOPOSITION_MAP_OPTIONS = {
     'minZoom': 9,
     'maxZoom': 15,
 }
+=======
+>>>>>>> 15fdce534239fd9273b6fb7a5081d17f10ed3845

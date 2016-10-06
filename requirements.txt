@@ -1,5 +1,8 @@
-django==1.9
 djangorestframework
 django-geoposition
 qrcode
 pillow
+asgi-redis
+channels
+daphne==0.11.1
+Django==1.9.5

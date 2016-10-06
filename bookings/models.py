@@ -20,4 +20,7 @@ class AttractionTicket(models.Model):
     """
     Representation of a attraction
     """
-    pass
+    user = models.ForeignKey(SIAUser)
+    name = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
+    
