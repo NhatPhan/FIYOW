@@ -28,11 +28,8 @@ def baggageForPassenger(request):
     }
         
     query = s.substitute(pnr=pnr,dep_flight_date=dep_flight_date) + 'prettyPrint=true&apikey=7989ca6cbadb38855a6112a2eab0d594'
-    
     response = requests.get(query, headers=custom_headers)
-    
     content = json.loads(response.content)
-    
     return Response(content, status=response.status_code)
     
     
