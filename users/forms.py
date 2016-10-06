@@ -29,6 +29,6 @@ class SIAUserForm(forms.ModelForm):
         'name_on_card', 'card_number', 'expiration_month', 'expiration_year', 'cvv_number')
 
 
-LocationFormSet = inlineformset_factory(SIAUser, Location, fields=('user', 'name', 'position'), 
+LocationFormSet = inlineformset_factory(SIAUser, Location, fields=('user', 'location_name', 'position'), 
     max_num=1, extra=1, can_delete=False
 )

@@ -71,3 +71,16 @@ footer.page-footer {
   color: black;
   margin-top: 60px;
 }
+
+.bg-top{
+  position: absolute;
+  z-index: -1;
+  top:0;
+  left: 0;
+}
+
+.trip-info-holder {
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 20px;
+}

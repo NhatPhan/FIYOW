@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head %}
+  <title>SIA Challenge</title>
+{% endblock head %}
+
+{% block catchline %}
+    Your trip to Singapore
+{% endblock catchline %}
+
+
+{% block body %}
+
+<style>
+    #map-canvas {
+        height: 600px;
+    }
+</style>
+
+    <div class="trip-info-holder">
+    <ul class="collapsible popout" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>Baggage Check</div>
+      <div class="collapsible-body">
+          <p><a href="{% url 'flight-search' %}">Book new flights</a> </p>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Share Taxi</div>
+      <dl>
+            {% for poi in pois %}
+                <dt>{{ poi.name }}</dt>
+                <dd>{{ poi.position }}</dd>
+            {% endfor %}
+        </dl>
+
+        <div id="map-canvas"></div>
+
+        <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false"></script>
+        <script>
+            function initialize() {
+                var map = new google.maps.Map(document.getElementById('map-canvas'));
+                var bounds = new google.maps.LatLngBounds();
+                function addMarker(lat, lng, title) {
+                    var position = new google.maps.LatLng(lat, lng);
+                    var marker = new google.maps.Marker({
+                        position: position,
+                        map: map,
+                        title: title
+                    });
+                    bounds.extend(position);
+                }
+                {% for poi in pois %}
+                    addMarker({{ poi.position.latitude }}, {{ poi.position.longitude }}, "{{ poi.name }}");
+                {% endfor %}
+                map.fitBounds(bounds);
+            }
+            google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+
+    </li>
+  </ul>
+</div>
+
+
+<script type="text/javascript">
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year
+        format: 'yyyy-mm-dd',
+    });
+
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+</script>
+
+{% endblock body %}
+

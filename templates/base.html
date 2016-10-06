@@ -26,8 +26,8 @@
     </div></li>
     <li><a href="{% url 'profile' %}"><i class="material-icons">cloud</i>Profile</a></li>
     <li><a href="{% url 'trip' %}"><i class="material-icons">cloud</i>Trips</a></li>
-     <li><a href="#!"><i class="material-icons">cloud</i>On Flights</a></li>
-     <li><a href="#!"><i class="material-icons">cloud</i>Arrival</a></li>
+     <li><a href="{% url 'onflight'%}"><i class="material-icons">cloud</i>On Flights</a></li>
+     <li><a href="{% url 'arrival'%}"><i class="material-icons">cloud</i>Arrival</a></li>
   </ul>
   <a href="#" data-activates="slide-out" class="button-collapse" id="side-nav-button"><i class="material-icons medium">menu</i></a>
 
@@ -44,7 +44,7 @@
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="{% static 'img/background1.jpg' %}" alt="Unsplashed background img 1"></div>
+    <div class="bg-top"><img src="{% static 'img/bg.jpg' %}" alt="Unsplashed background img 1"></div>
   </div>
 
 {% block body %}

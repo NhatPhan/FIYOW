@@ -10,6 +10,7 @@ from django.views.generic import DetailView
 
 from users.forms import SIAUserForm, LocationFormSet
 from users.models import SIAUser
+from directions.models import Location
 
 def test(request):
     """
@@ -154,7 +155,7 @@ class ProfileView(ModelFormMixin, DetailView):
 
 def trip(request):
     """
-    Profile dashboard of user
+    Trip view of the user
     :param request:
     :return:
     """
@@ -168,3 +169,40 @@ def trip(request):
 
     sia_user = get_object_or_404(SIAUser, user=user)
     return render(request, 'users/trip.html', {'SiaUser':sia_user})
+
+
+def onflight(request):
+    """
+    On flight view for the user
+    :param request:
+    :return:
+    """
+
+    # Authentication check
+    if not request.user.is_authenticated():
+        # TODO redirect to error page
+        return redirect(reverse('index'))
+
+    user = request.user
+
+    sia_user = get_object_or_404(SIAUser, user=user)
+    return render(request, 'users/on-flight.html', {'SiaUser':sia_user})
+    
+    
+def arrival(request):
+    """
+    On arrival view for the user
+    :param request:
+    :return:
+    """
+
+    # Authentication check
+    if not request.user.is_authenticated():
+        # TODO redirect to error page
+        return redirect(reverse('index'))
+
+    user = request.user
+
+    sia_user = get_object_or_404(SIAUser, user=user)
+    pois = Location.objects.all()
+    return render(request, 'users/arrival.html', {'SiaUser':sia_user, 'pois': pois} )

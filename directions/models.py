@@ -8,5 +8,5 @@ from users.models import SIAUser
 
 class Location(models.Model):
     user = models.ForeignKey(SIAUser)
-    name = models.CharField(max_length=100)
+    location_name = models.CharField(max_length=100)
     position = GeopositionField()
