@@ -8,11 +8,11 @@ from django.forms.widgets import SelectDateWidget
 
 
 class SIAUserForm(forms.ModelForm):
-    email = forms.EmailField(required=False)
+    first_name = forms.CharField(max_length=200)
 
     class Meta:
         model = SIAUser
-        fields = ('email',)
+        fields = ('first_name',)
 
 
 LocationFormSet = inlineformset_factory(SIAUser, Location,

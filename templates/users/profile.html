@@ -1,19 +1,30 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
 </head>
 <body>
     PROFILE PAGE
     Login successfully!
 
 
-    <form>
-        {{ localionForm.management_form }}
-        {{ userForm.management_form }}
-        {{ userForm }}
-        {{ locationForm}}
+    <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        
+        {{ form }}
+        {% for loc_form in location_form %}
+        {{ loc_form.media }}
+        {{ loc_form }}
+        {% endfor %}
+        
+        {{ location_form.management_form }}
+        
+        <input type="submit" name="submit" class="btn btn-primary btn-sm" value="Update" />
     </form>
 
 
