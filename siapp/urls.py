@@ -19,6 +19,7 @@ from django.contrib import admin
 from bookings.views import *
 from users.views import *
 from directions.views import *
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
 
@@ -42,7 +43,7 @@ urlpatterns = [
 
     # Users
     url(r'^user/signup$', signup, name='signup'),
-    url(r'^user/profile$', profile, name='profile'),
+    url(r'^user/profile$', login_required(ProfileView.as_view()), name='profile'),
     url(r'^testtemplate$', test, name='test'),
 
     # Direction
