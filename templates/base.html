@@ -21,10 +21,10 @@
 
  <ul id="slide-out" class="side-nav">
     <li><div class="userView">
-      <a href=""><img class="circle" src="images/yuna.jpg"></a>
-      <a href=""><span class="name">John Doe</span></a>
-      <a href=""><span class="email">jdandturk@gmail.com</span></a>
+      <span class="name">{{SiaUser.first_name}}</span>
+      <span class="email">{{SiaUser.user.email}}</span>
     </div></li>
+    <li><a href="{% url 'profile' %}"><i class="material-icons">cloud</i>Profile</a></li>
     <li><a href="{% url 'trip' %}"><i class="material-icons">cloud</i>Trips</a></li>
      <li><a href="#!"><i class="material-icons">cloud</i>On Flights</a></li>
      <li><a href="#!"><i class="material-icons">cloud</i>Arrival</a></li>
@@ -36,7 +36,7 @@
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
-        <h1 class="header center teal-text text-lighten-2">Hi, {{ SIAUser.firstname }}</h1>
+        <h1 class="header center teal-text text-lighten-2">Hi, {{SiaUser.first_name}}</h1>
         <div class="row center">
           <h5 class="header col s12 light">
               {% block catchline %}

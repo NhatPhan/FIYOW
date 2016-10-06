@@ -46,8 +46,9 @@ INSTALLED_APPS = [
     'users',
     'bookings',
     'baggages',
-    "geoposition",
+    'geoposition',
     'directions',
+    'bootstrapform',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -139,3 +140,8 @@ STATICFILES_DIRS = (
 )
 
 GEOPOSITION_GOOGLE_MAPS_API_KEY  = 'AIzaSyArB82fVC8XkEhDgY0_lX1s5F4YW4QqWKI'
+
+GEOPOSITION_MAP_OPTIONS = {
+    'minZoom': 9,
+    'maxZoom': 15,
+}

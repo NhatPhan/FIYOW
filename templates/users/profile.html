@@ -1,32 +1,38 @@
+{% extends "base.html" %}
 {% load staticfiles %}
+{% load bootstrap %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    
-    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
-</head>
-<body>
-    PROFILE PAGE
-    Login successfully!
+{% block body %}
 
+
+<div class="container">
 
     <form enctype="multipart/form-data" method="post">
         {% csrf_token %}
         
-        {{ form }}
+        {{ form|bootstrap }}
+        
         {% for loc_form in location_form %}
         {{ loc_form.media }}
-        {{ loc_form }}
+        {{ loc_form|bootstrap }}
         {% endfor %}
         
         {{ location_form.management_form }}
         
         <input type="submit" name="submit" class="btn btn-primary btn-sm" value="Update" />
     </form>
+</div>
 
+<script type="text/javascript">
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year
+        format: 'yyyy-mm-dd',
+    });
 
-</body>
-</html>
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+</script>
+
+{% endblock %}

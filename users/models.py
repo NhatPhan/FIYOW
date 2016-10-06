@@ -16,6 +16,13 @@ class SIAUser(models.Model):
     nationality = models.CharField(max_length=200, null=True)
     dob = models.DateField(null=True, verbose_name="Date of birth")
     language = models.CharField(null=True, max_length=200)
+    
+    #Credit Card Info
+    name_on_card = models.CharField(max_length=200, null=True)
+    card_number = models.CharField(max_length=20, null=True)
+    expiration_month = models.IntegerField(null=True)
+    expiration_year = models.IntegerField(null=True)
+    cvv_number = models.IntegerField(null=True)
 
 
     @classmethod

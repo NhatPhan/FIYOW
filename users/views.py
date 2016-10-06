@@ -116,6 +116,7 @@ class ProfileView(ModelFormMixin, DetailView):
         context = super(ProfileView, self).get_context_data(**kwargs)
         context['form'] = form
         context['location_form'] = location_form
+        context['SiaUser'] = user_profile
         return context
         
     def get_object(self,**kwargs):
@@ -166,4 +167,4 @@ def trip(request):
     user = request.user
 
     sia_user = get_object_or_404(SIAUser, user=user)
-    return render(request, 'users/trip.html', {'siaUser':sia_user})
+    return render(request, 'users/trip.html', {'SiaUser':sia_user})
