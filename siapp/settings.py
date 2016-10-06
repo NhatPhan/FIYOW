@@ -46,8 +46,10 @@ INSTALLED_APPS = [
     'users',
     'bookings',
     'baggages',
-    "geoposition",
+    'geoposition',
     'directions',
+    'channels',
+    'chat',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -62,6 +64,18 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'siapp.urls'
+
+redis_host = os.environ.get('REDIS_HOST', '127.0.0.1')
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'asgi_redis.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [(redis_host, 6379)],
+        },
+        'ROUTING': 'siapp.routing.channel_routing',
+    },
+}
 
 TEMPLATES = [
     {
