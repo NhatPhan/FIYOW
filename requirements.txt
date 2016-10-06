@@ -1,3 +1,5 @@
 django==1.9
 djangorestframework
 django-geoposition
+qrcode
+pillow

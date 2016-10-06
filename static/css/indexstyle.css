@@ -45,8 +45,13 @@ h1, h2 {
 }
 
 h1 {
-  margin-top: 60px;
-  font-size: 80px;
+  margin-top: 20px;
+  font-size: 120px;
+}
+
+.i {
+  font-size: 180px;
+  display: inline-block;
 }
 
 .ghost-input {
@@ -136,6 +141,7 @@ blockquote {
   color: white;
   text-align: center;
   font-size: 25px;
+  margin: 10px;
 }
 
 .underline {

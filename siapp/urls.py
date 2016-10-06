@@ -43,7 +43,8 @@ urlpatterns = [
 
     # Users
     url(r'^user/signup$', signup, name='signup'),
-    url(r'^user/profile$', login_required(ProfileView.as_view()), name='profile'),
+    url(r'^user/profile$', profile, name='profile'),
+    url(r'^user/trip', trip, name='trip'),
     url(r'^testtemplate$', test, name='test'),
 
     # Direction

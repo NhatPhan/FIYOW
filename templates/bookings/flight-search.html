@@ -5,28 +5,43 @@
   <title>SIA Challenge</title>
 {% endblock head %}
 
+{% block catchline %}
+    Where do you want to go?
+{% endblock catchline %}
+
 {% block body %}
+    <form class="col s12 flight-form" method="POST" ectype="application/json">{% csrf_token %}
 
-  <div class="row">
-    <form class="col s12" method="POST" ectype="application/json">{% csrf_token %}
-
-      <div class="row">
-        <div class="input-field col s6">
-          <input name="departureAirport" placeholder="Placeholder" id="departureAirport" type="text" class="validate">
-          <label for="departureAirport">From</label>
+          <div class="input-field">
+            <select name="departureAirport">
+              <option value="SGN">SGN</option>
+              <option value="JFK">JFK</option>
+              <option value="LAX">LAX</option>
+            </select>
+            <label>From</label>
         </div>
-          <input name="departureDate" type="date" class="datepicker col s6">
-        <div class="input-field col s6">
-          <input name="arrivalAirport" id="arrivalAirport" type="text" class="validate">
-          <label for="arrivalAirport">To</label>
-        </div>
-      </div>
 
-         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+         <div class="input-field">
+            <select name="arrivalAirport">
+              <option value="SGN">SGN</option>
+              <option value="JFK">JFK</option>
+              <option value="LAX">LAX</option>
+            </select>
+            <label>To</label>
+        </div>
+
+        <div class="input-field">
+            <input name="departureDate" type="date" class="datepicker col s6" placeholder="Fly Date">
+        </div>
+
+        <div class="input-field">
+            <input name="departureDate" type="date" class="datepicker col s6" placeholder="Return Date">
+        </div>
+
+         <button class="btn waves-effect waves-light" type="submit" name="action">Search flight!
         <i class="material-icons right">send</i>
       </button>
     </form>
-  </div>
 
 
 <script type="text/javascript">
@@ -34,6 +49,10 @@
         selectMonths: true, // Creates a dropdown to control month
         selectYears: 15, // Creates a dropdown of 15 years to control year
         format: 'yyyy-mm-dd',
+    });
+
+    $(document).ready(function() {
+        $('select').material_select();
     });
 </script>
 

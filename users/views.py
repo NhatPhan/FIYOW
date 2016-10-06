@@ -91,6 +91,7 @@ class ProfileView(ModelFormMixin, DetailView):
     :param request:
     :return:
     """
+<<<<<<< HEAD
     template_name = 'users/profile.html'
     model = SIAUser
     form_class = SIAUserForm
@@ -150,3 +151,37 @@ class ProfileView(ModelFormMixin, DetailView):
         return self.render_to_response(
             self.get_context_data(form=form, location_form=location_form))
     
+=======
+
+    # Authentication check
+    if not request.user.is_authenticated():
+        # TODO redirect to error page
+        return redirect(reverse('index'))
+
+    user = request.user
+    sia_user = SIAUser.objects.get(user=user)
+
+    userForm = SIAUserForm(request.POST,request.FILES,instance=sia_user)
+    locationForm = LocationFormSet(request.POST,request.FILES,instance=sia_user)
+
+    sia_user = get_object_or_404(SIAUser, user=user)
+    return render(request, 'users/profile.html', {'siaUser':sia_user, 'userForm':userForm, 'locationForm':locationForm })
+
+
+def trip(request):
+    """
+    Profile dashboard of user
+    :param request:
+    :return:
+    """
+
+    # Authentication check
+    if not request.user.is_authenticated():
+        # TODO redirect to error page
+        return redirect(reverse('index'))
+
+    user = request.user
+
+    sia_user = get_object_or_404(SIAUser, user=user)
+    return render(request, 'users/trip.html', {'siaUser':sia_user})
+>>>>>>> d5e387252ed1e47349eac0a90b8d54ed3d80523d
