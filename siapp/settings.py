@@ -154,11 +154,9 @@ STATICFILES_DIRS = (
 )
 
 GEOPOSITION_GOOGLE_MAPS_API_KEY  = 'AIzaSyArB82fVC8XkEhDgY0_lX1s5F4YW4QqWKI'
-<<<<<<< HEAD
 
 GEOPOSITION_MAP_OPTIONS = {
     'minZoom': 9,
     'maxZoom': 15,
 }
-=======
->>>>>>> 15fdce534239fd9273b6fb7a5081d17f10ed3845
+

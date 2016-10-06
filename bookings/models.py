@@ -14,7 +14,7 @@ class Flight(models.Model):
     to_airport = models.CharField(max_length=200, null=True)
     departure_time = models.DateTimeField(null=True)
     arrival_time = models.DateTimeField(null=True)
-    
+    price = models.DecimalField(null=True)
     
 class AttractionTicket(models.Model):
     """
@@ -23,4 +23,4 @@ class AttractionTicket(models.Model):
     user = models.ForeignKey(SIAUser)
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
-    
+    price = models.DecimalField(null=True)
