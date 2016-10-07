@@ -8,10 +8,21 @@
 {% block body %}
 
     {% for offer in offers %}
-    <p>
-      {{ legs.i }} </br>
-      {{ offer.totalPrice.amount }} : {{offer.totalPrice.currencyCode}}
-    </p>
+    <div style="background-color: cyan" class="displayResult">
+        <p>Total Price: {{offer.totalPrice.currencyCode}}{{ offer.totalPrice.formattedPrice}}</p>
+        <p>Seats remaining: {{offer.seatsRemaining}}</p>
+        <p>Duration {{ leg.travelDuration }} </p>
+        {% for leg in legs %}
+            {% if leg.legId == offer.legIds.0%}
+                <form method="POST" ectype="application/json" action="book_flight">{% csrf_token %}
+                    <input style='display:None;' type="textarea" name="json_segment" value="{{leg}}"/>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Book!
+                        <i class="material-icons right">send</i>
+                </form>
+            {% endif %}
+        {% endfor %}
+
+    </div>
     {% endfor %}
 
 {% endblock body %}

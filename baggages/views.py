@@ -7,35 +7,32 @@ from rest_framework.response import Response
 
 import requests, json
 from string import Template
+from datetime import datetime
+from json import dumps
+from django.core.serializers.json import DjangoJSONEncoder
+from django.core import serializers
+
+# assuming obj is a model instance
+
+from bookings.models import Booking
+from users.models import SIAUser
 
 @api_view(['GET'])
-def baggageForPassenger(request):
-    """
-    pnr (mandatory)
-    dep_flight_date (mandatory)
-    """    
-    passengerData = request.data
-    pnr = passengerData['pnr']
-    dep_flight_date = passengerData['dep_flight_date']
+def baggageStatus(request):
+    data = request.query_params
+    print(data)
+    first_name = data['first_name']
+    last_name = data['last_name']
+
+    user = SIAUser.objects.get(first_name=first_name, last_name=last_name)
+    baggages = Booking.objects\
+        .filter(user=user,
+                departure_time__gte=datetime.today())[0].baggage_set.all()
+    print(baggages)
+    response = serializers.serialize('json', list(baggages))
+
+    print(response)
+
+    return Response(response)
     
-    s = Template('https://bagjourney.sita.aero/baggage/bagsforpassenger/v1.0\
-        /pnr/$pnr/dep_flight_date/$dep_flight_date')
-    
-    custom_headers = { 'Accept-Charset': 'UTF-8',
-        'CONTENT-TYPE' : 'application/json',
-        'Accept' : 'application/json',
-        'api_key' : '7989ca6cbadb38855a6112a2eab0d594' 
-    }
-        
-    query = s.substitute(pnr=pnr,dep_flight_date=dep_flight_date) + 'prettyPrint=true&apikey=7989ca6cbadb38855a6112a2eab0d594'
-    
-    response = requests.get(query, headers=custom_headers)
-    
-    content = json.loads(response.content)
-    
-    return Response(content, status=response.status_code)
-    
-    
-    
-    
-    
+

@@ -8,3 +8,4 @@ from hotel_booking import hotel_booking
 from package_search import package_search
 from activities import activities_search, activity_details
 from unreal_deals import unreal_deals
+from book_flight import book_flight

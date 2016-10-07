@@ -18,8 +18,10 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from bookings.views import *
 from users.views import *
+from baggages.views import baggageStatus
 from directions.views import *
 from chat.views import chat_view
+
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
@@ -49,6 +51,9 @@ urlpatterns = [
     url(r'^user/trip', trip, name='trip'),
     url(r'^testtemplate$', test, name='test'),
 
+    # Baggage
+    url(r'^user/baggages$', baggageStatus),
+
     # Direction
     url(r'^map$', poi_list , name='poi_list'),
 
@@ -60,5 +65,7 @@ urlpatterns = [
     
     # Arrival
     url(r'^arrival/', arrival, name='arrival'),
+
+    url(r'^expedia/book_flight', book_flight, name='book_flight1')
 ]
 
