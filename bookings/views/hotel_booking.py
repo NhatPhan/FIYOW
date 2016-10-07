@@ -9,5 +9,5 @@ def hotel_booking(request):
         SIAUserId = SIAUser.objects.get(user__id=request.user.id)
         hotel = Hotel(user=SIAUserId, hotelId=request.POST['hotelId'])
         hotel.save()
-        return HttpResponseRedirect(reverse('activities-search'))
+        return HttpResponseRedirect(reverse('trip'))
     return HttpResponseRedirect(reverse('hotel-search'))

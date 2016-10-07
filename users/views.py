@@ -175,19 +175,41 @@ def trip(request):
     user = request.user
 
     sia_user = get_object_or_404(SIAUser, user=user)
+    print sia_user
+    print sia_user.id
     hotels = Hotel.objects.filter(user=sia_user.id)
+    print hotels
     
     print "true"
     hotelsResponse = []
     for hotel in hotels:
-        hotel_id = 'hotelId=' + hotel.hotelId
+        hotel_id = 'hotelId=' + str(hotel.hotelId)
         print hotel.hotelId
 
         s = Template('http://terminal2.expedia.com:80/x/mhotels/info?$hotelId')
-        search = s.substitute(hotelId=hotel_id) + 'apikey=xVKsMHTYGMyM5xXp2iyIABHnbx3j8l44'
-        response = requests.get(search)
-        hotel = json.loads(response.content)
-        hotelsResponse.append(hotel)
+        search = s.substitute(hotelId=hotel_id) + '&apikey=xVKsMHTYGMyM5xXp2iyIABHnbx3j8l44'
+        print search
+        hotel = requests.get(search)
+        newHotelResponse = []
+        content = json.loads(hotel.content)
+        newHotelResponse = {}
+        
+        hotelName = content['localizedHotelName']
+        if 'checkInInstructions' in content:
+            checkInInstructions = content['checkInInstructions']
+            newHotelResponse['checkInInstructions'] = checkInInstructions
+        hotelAddress = content['hotelAddress']
+        telesalesNumber = content['telesalesNumber']
+        
+        newHotelResponse['hotelName'] = hotelName
+        newHotelResponse['hotelAddress'] = hotelAddress
+        newHotelResponse['telesalesNumber'] = telesalesNumber
+
+        
+        hotelsResponse.append(newHotelResponse)
+    
+    print hotelsResponse
+    
 
     return render(request, 'users/trip.html', {'SiaUser':sia_user, 'hotels': hotelsResponse })
 

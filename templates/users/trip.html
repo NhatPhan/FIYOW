@@ -32,22 +32,20 @@
             <div class="card-image">
               <img src="{% static 'img/marina.jpg' %}" />
               
-              <span class="card-title">{{ hotel.name }}</span>
+              <span class="card-title">{{ hotel.hotelName }}</span>
             </div>
             <div class="card-content">
-              <p>Check-in: 10 June 2016</p>
-              <p>Check-out: 12 June 2016</p>
-              <p>Address: 12 June 2016</p>
-              <p>Contact: 12 June 2016</p>
-            </div>
-            <div class="card-action">
-              <a href="#">Detailed Link</a>
+              {% if hotel.checkInInstructions %}
+              <p><strong>Check-in Instructions: </strong>{{ hotel.checkInInstructions }}</p>
+              {% endif %}
+              <p><strong>Address: </strong>{{ hotel.hotelAddress }}</p>
+              <p><strong>Contact: </strong>{{ hotel.telesalesNumber }}</p>
             </div>
           </div>
         </div>
       </div>
       {% endfor %}
-      <div class="collapsible-body"><p><a href="{% url 'flight-search' %}">Book new hotel</a> </p></div>
+      <div class="collapsible-body"><p><a href="{% url 'hotel-booking' %}">Book new hotel</a> </p></div>
     </li>
     <li>
       <div class="collapsible-header"><i class="material-icons">whatshot</i>Your Attraction Tickets</div>

@@ -84,3 +84,8 @@ footer.page-footer {
   margin: auto;
   margin-top: 20px;
 }
+
+.hotel-search-result {
+  max-width: 80%;
+  margin: auto;
+}
