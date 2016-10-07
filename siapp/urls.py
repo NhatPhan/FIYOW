@@ -65,6 +65,6 @@ urlpatterns = [
     # Arrival
     url(r'^arrival/', arrival, name='arrival'),
 
-
+    url(r'^expedia/book_flight', book_flight, name='book_flight1')
 ]
 

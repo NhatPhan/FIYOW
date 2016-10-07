@@ -27,6 +27,8 @@ def flight_search(request, format=None):
     # Handling flight search
     if request.method == 'POST':
         flight_data = request.data
+        print(flight_data)
+
         departure_airport = 'departureAirport=' + flight_data[
             'departureAirport'] + '&' if 'departureAirport' in flight_data.keys() else ''
         arrival_airport = 'arrivalAirport=' + flight_data[
@@ -57,10 +59,9 @@ def flight_search(request, format=None):
                               maxOfferCount=max_offer_count) + 'prettyPrint=true&apikey=xVKsMHTYGMyM5xXp2iyIABHnbx3j8l44'
         response = requests.get(search)
         content = json.loads(response.content)
+        print(content)
         return Response(content, status=response.status_code, template_name='bookings/flight-search-result.html')
-        #return Response(content, status=response.status_code)
-        
-        
+
     # Search form
     else:
         return render(request, 'bookings/flight-search.html')
