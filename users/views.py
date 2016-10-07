@@ -10,7 +10,14 @@ from django.views.generic import DetailView
 
 from users.forms import SIAUserForm, LocationFormSet
 from users.models import SIAUser
+from bookings.models import Hotel
 from directions.models import Location
+import json
+from string import Template
+
+import requests
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 def test(request):
     """
@@ -152,7 +159,7 @@ class ProfileView(ModelFormMixin, DetailView):
         return self.render_to_response(
             self.get_context_data(form=form, location_form=location_form))
 
-
+@api_view(['GET'])
 def trip(request):
     """
     Trip view of the user
@@ -168,7 +175,21 @@ def trip(request):
     user = request.user
 
     sia_user = get_object_or_404(SIAUser, user=user)
-    return render(request, 'users/trip.html', {'SiaUser':sia_user})
+    hotels = Hotel.objects.filter(user=sia_user.id)
+    
+    print "true"
+    hotelsResponse = []
+    for hotel in hotels:
+        hotel_id = 'hotelId=' + hotel.hotelId
+        print hotel.hotelId
+
+        s = Template('http://terminal2.expedia.com:80/x/mhotels/info?$hotelId')
+        search = s.substitute(hotelId=hotel_id) + 'apikey=xVKsMHTYGMyM5xXp2iyIABHnbx3j8l44'
+        response = requests.get(search)
+        hotel = json.loads(response.content)
+        hotelsResponse.append(hotel)
+
+    return render(request, 'users/trip.html', {'SiaUser':sia_user, 'hotels': hotelsResponse })
 
 
 def onflight(request):

@@ -6,27 +6,31 @@
 {% endblock head %}
 
 {% block catchline %}
-    Where do you want to visit?
+    Where do you want to stay?
 {% endblock catchline %}
 
 {% block body %}
     <form class="col s12 flight-form" method="POST" ectype="application/json">{% csrf_token %}
 
         <div class="input-field">
-            <input type="text" name="location" />
-            <label>Location</label>
+            <input type="text" name="city" />
+            <label>City</label>
         </div>
 
         <div class="input-field">
-            <input type="text" name="" />
-            <label>Attraction Name</label>
+            <input name="checkInDate" type="date" class="datepicker col s6" placeholder="Check-in Date">
         </div>
 
         <div class="input-field">
             <input name="checkOutDate" type="date" class="datepicker col s6" placeholder="Check-out Date">
         </div>
+        
+        <div class="input-field">
+            <input type="text" name="room1"/>
+            <label>Number of adults, followed by the children's ages</label>
+        </div>
 
-         <button class="btn waves-effect waves-light" type="submit" name="action">Search Activities!
+         <button class="btn waves-effect waves-light" type="submit" name="action">Search hotel!
         <i class="material-icons right">send</i>
       </button>
     </form>

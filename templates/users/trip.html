@@ -25,13 +25,14 @@
     </li>
     <li>
       <div class="collapsible-header"><i class="material-icons">place</i>Your Hotels Booking</div>
+      {% for hotel in hotels %}
       <div class="row">
         <div class="col s12 m7">
           <div class="card">
             <div class="card-image">
               <img src="{% static 'img/marina.jpg' %}" />
               
-              <span class="card-title">Marina Bay Sand</span>
+              <span class="card-title">{{ hotel.name }}</span>
             </div>
             <div class="card-content">
               <p>Check-in: 10 June 2016</p>
@@ -45,6 +46,7 @@
           </div>
         </div>
       </div>
+      {% endfor %}
       <div class="collapsible-body"><p><a href="{% url 'flight-search' %}">Book new hotel</a> </p></div>
     </li>
     <li>

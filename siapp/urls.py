@@ -34,9 +34,10 @@ urlpatterns = [
     url(r'^expedia/flight_overview', flight_overview),
     url(r'^expedia/car_search', car_search),
     url(r'^expedia/car_search', car_search),
-    url(r'^expedia/hotel_search', hotel_search),
+    url(r'^expedia/hotel_search', hotel_search, name='hotel-search'),
     url(r'^expedia/hotel_offers', hotel_offers),
     url(r'^expedia/hotel_info', hotel_info),
+    url(r'^expedia/hotel_booking', hotel_booking, name='hotel-booking'),
     url(r'^expedia/package_search', package_search),
     url(r'^expedia/activities_search', activities_search, name='activities-search'),
     url(r'^expedia/activity_details', activity_details),
@@ -52,7 +53,7 @@ urlpatterns = [
     url(r'^map$', poi_list , name='poi_list'),
 
     # Chat
-    url(r'^chat/', chat_view),
+    url(r'^chat/', chat_view, name='chat'),
     
     # On flight
     url(r'^onflight/', onflight, name='onflight'),
