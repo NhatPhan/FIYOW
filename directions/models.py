@@ -10,3 +10,4 @@ class Location(models.Model):
     user = models.ForeignKey(SIAUser)
     location_name = models.CharField(max_length=100)
     position = GeopositionField()
+

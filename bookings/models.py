@@ -5,7 +5,7 @@ from users.models import SIAUser
 
 # Create your models here.
 
-class Flight(models.Model):
+class Booking(models.Model):
     """
     Representation of a flight
     """
@@ -15,7 +15,10 @@ class Flight(models.Model):
     departure_time = models.DateTimeField(null=True)
     arrival_time = models.DateTimeField(null=True)
     price = models.FloatField(null=True)
-    
+
+    class Meta:
+        ordering = ['departure_time']
+
 class AttractionTicket(models.Model):
     """
     Representation of a attraction
@@ -24,3 +27,4 @@ class AttractionTicket(models.Model):
     name = models.CharField(max_length=200, null=True)
     description = models.CharField(max_length=200, null=True)
     price = models.FloatField(null=True)
+
