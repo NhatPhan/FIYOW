@@ -36,4 +36,10 @@ class AttractionTicket(models.Model):
     name = models.CharField(max_length=200, null=True)
     description = models.CharField(max_length=200, null=True)
     price = models.FloatField(null=True)
-
+    
+class Hotel(models.Model):
+    """
+    Representation of a attraction
+    """
+    user = models.ForeignKey(SIAUser)
+    hotelId = models.IntegerField()

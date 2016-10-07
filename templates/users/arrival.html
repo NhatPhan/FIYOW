@@ -23,17 +23,12 @@
     <li>
       <div class="collapsible-header"><i class="material-icons">filter_drama</i>Baggage Check</div>
       <div class="collapsible-body">
-          <p><a href="{% url 'flight-search' %}">Book new flights</a> </p>
+          <a href="{% url 'chat' %}"><button>Check Baggage Status</button></a>
       </div>
     </li>
     <li>
       <div class="collapsible-header"><i class="material-icons">place</i>Share Taxi</div>
-      <dl>
-            {% for poi in pois %}
-                <dt>{{ poi.name }}</dt>
-                <dd>{{ poi.position }}</dd>
-            {% endfor %}
-        </dl>
+      <a href="{% url 'chat' %}"><button>Contact For Share</button></a>
 
         <div id="map-canvas"></div>
 

@@ -21,13 +21,25 @@
 
  <ul id="slide-out" class="side-nav">
     <li><div class="userView">
-      <span class="name">{{SiaUser.first_name}}</span>
-      <span class="email">{{SiaUser.user.email}}</span>
+      <span class="name">
+        {% if SiaUser.first_name %}
+            {{SiaUser.first_name}}
+        {% else  %}
+            Alex
+        {% endif %}
+        </span>
+      <span class="email">
+        {% if SiaUser.user.email %}
+            {{SiaUser.user.email}}
+        {% else %}
+            alex@gmail.com
+        {% endif %}
+        </span>
     </div></li>
-    <li><a href="{% url 'profile' %}"><i class="material-icons">cloud</i>Profile</a></li>
-    <li><a href="{% url 'trip' %}"><i class="material-icons">cloud</i>Trips</a></li>
+    <li><a href="{% url 'profile' %}"><i class="material-icons">contacts</i>Profile</a></li>
+    <li><a href="{% url 'trip' %}"><i class="material-icons">shop_two</i>Trips</a></li>
      <li><a href="{% url 'onflight'%}"><i class="material-icons">cloud</i>On Flights</a></li>
-     <li><a href="{% url 'arrival'%}"><i class="material-icons">cloud</i>Arrival</a></li>
+     <li><a href="{% url 'arrival'%}"><i class="material-icons">import_export</i>Arrival</a></li>
   </ul>
   <a href="#" data-activates="slide-out" class="button-collapse" id="side-nav-button"><i class="material-icons medium">menu</i></a>
 
@@ -36,7 +48,12 @@
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
-        <h1 class="header center teal-text text-lighten-2">Hi, {{SiaUser.first_name}}</h1>
+        <h1 class="header center teal-text text-lighten-2">Hi,
+        {% if SiaUser.first_name %}
+            {{SiaUser.first_name}}
+        {% else  %}
+            Alex
+        {% endif %}</h1>
         <div class="row center">
           <h5 class="header col s12 light">
               {% block catchline %}

@@ -2,11 +2,13 @@ import json
 from string import Template
 
 import requests
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, renderer_classes
+from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from django.shortcuts import render
 
 @api_view(['POST', 'GET'])
+@renderer_classes([TemplateHTMLRenderer])
 def activities_search(request):
     """
     location (required)
@@ -26,7 +28,7 @@ def activities_search(request):
                 endDate=end_date) + 'apikey=xVKsMHTYGMyM5xXp2iyIABHnbx3j8l44'
         response = requests.get(search)
         content = json.loads(response.content)
-        return Response(content, status=response.status_code)
+        return Response(content, status=response.status_code, template_name='bookings/flight-search-result.html')
     
     else:
         return render(request, 'bookings/activities-search.html')

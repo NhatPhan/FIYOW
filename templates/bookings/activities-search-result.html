@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head %}
+  <title>SIA Challenge</title>
+{% endblock head %}
+
+{% block body %}
+    
+    <h4 class="card-panel teal lighten-2"><strong> Activities Search Results</strong></h4>
+        <ul class="collection">
+        {% for hotel in hotelList %}
+            <li class="collection-item dismissable avatar card blue-grey lighten-4">
+              <img src="http://images.trvl-media.com{{ hotel.largeThumbnailUrl }}" alt="" class="responsive-img circle">
+              <span class="title"><strong>{{ hotel.name }}</strong></span>
+              <p><strong>Address: </strong>{{ hotel.address }} <br>
+                 <strong>Description: </strong>{{ hotel.shortDescription }} <br>
+                 <strong>Total Price Including Fees: </strong>{{ hotel.lowRateInfo.formattedTotalPriceWithMandatoryFees }} <br>
+                 <strong>Discount: </strong>{{ hotel.discountMessage }} <br>
+                 <strong>Guest Rating: </strong>{{ hotel.hotelGuestRating }} <br>
+                 <strong>Hotel Start Rating: </strong>{{ hotel.hotelStarRating }} <br>
+              </p>
+            <form method="POST" ectype="application/json" action="hotel_booking">{% csrf_token %}
+                <input style="display: none;" type="text" name="hotelId" value="{{ hotel.hotelId }}"/>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Book!
+                <i class="material-icons right">send</i>
+            </form>
+            </li>
+            <br>
+        {% endfor %}
+        </ul>
+
+{% endblock body %}
+
