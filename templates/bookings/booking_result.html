@@ -8,23 +8,25 @@
 {% block body %}
 
     <div class="container">
-        <h2 style="text-align:center;">Your booking details:</h2>
+        <h2 style="text-align:center;"><strong>Your booking details:</strong></h2>
         {% for booking in bookings %}
         <div class="container">
             <ul class="collection">
                 <li class="collection-item dismissable avatar card blue-grey lighten-4">
-                    From: {{ booking.from_airport }}</li>
-                <li class="collection-item dismissable avatar card blue-grey lighten-4">
-                    To: {{ booking.to_airport }}</li>
-                <li class="collection-item dismissable avatar card blue-grey lighten-4">
-                    Departure: {{ booking.departure_time }}</li>
-                <li class="collection-item dismissable avatar card blue-grey lighten-4">
-                    Arrival: {{ booking.arrival_time }}</li>
-                <li class="collection-item dismissable avatar card blue-grey lighten-4">
-                    Price: {{ booking.price }}</li>
+                    <strong>From: </strong>{{ booking.from_airport }} <br>
+                
+                    <strong>To: </strong>{{ booking.to_airport }} <br>
+                
+                    <strong>Departure: </strong>{{ booking.departure_time }} <br>
+                
+                    <strong>Arrival: </strong>{{ booking.arrival_time }} <br>
+                
+                    <strong>Price: </strong>{{ booking.price }} <br>
+                </li>
             </ul>
         </div>
         {% endfor %}
+        <a href="/user/trip" class="btn btn-primary" style="margin-left:450px;">OK</a>
     </div>
 {% endblock body %}
 

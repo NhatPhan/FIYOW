@@ -211,11 +211,9 @@ def trip(request):
         
         hotelsResponse.append(newHotelResponse)
     
-        hotelsResponse.append(hotel)
         
     for activity in activities:
         
-        print activity.id
         activity_id = 'activityId=' + str(activity.activityId)
         start_date = '&startDate=' + str(activity.start_date)
         end_date = '&endDate=' + str(activity.end_date)
@@ -233,9 +231,23 @@ def trip(request):
         
         newActivityResponse['title'] = activityTitle
         
+        activityCategory = content['category']
+        
+        newActivityResponse['category'] = activityCategory
+        
+        activityStart = content['startDate']
+        
+        newActivityResponse['startDate'] = activityStart
+        
+        activityEnd = content['endDate']
+        
+        newActivityResponse['endDate'] = activityEnd
+        
+        activityImage = content['images'][0]['url']
+        
+        newActivityResponse['image'] = activityImage
+        
         activitiesResponse.append(newActivityResponse)
-    
-        activitiesResponse.append(activity)
 
     return render(request, 'users/trip.html',
                   {'SiaUser':sia_user,
