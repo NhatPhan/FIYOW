@@ -19,6 +19,15 @@ class Booking(models.Model):
     class Meta:
         ordering = ['departure_time']
 
+    def as_json(self):
+        return dict(
+            user_id=self.user.id, from_airport=self.from_airport,
+            to_airport=self.to_airport,
+            departure_time=self.departure_time,
+            arrival_time=self.arrival_time,
+            price=self.price)
+
+
 class AttractionTicket(models.Model):
     """
     Representation of a attraction

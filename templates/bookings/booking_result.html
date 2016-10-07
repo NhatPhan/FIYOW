@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head %}
+  <title>SIA Challenge</title>
+{% endblock head %}
+
+{% block body %}
+    <div class="container">
+        <h2 style="text-align:center;">Your booking details:</h2>
+        {% for booking in bookings %}
+        <div class="container">
+            <ul class="list-group">
+                <li class="list-group-item">From: {{ booking.from_airport }}</li>
+                <li class="list-group-item">To: {{ booking.to_airport }}</li>
+                <li class="list-group-item">Departure: {{ booking.departure_time }}</li>
+                <li class="list-group-item">Arrival: {{ booking.arrival_time }}</li>
+                <li class="list-group-item">Price: {{ booking.price }}</li>
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock body %}
+

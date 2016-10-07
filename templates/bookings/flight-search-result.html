@@ -16,6 +16,8 @@
             {% if leg.legId == offer.legIds.0%}
                 <form method="POST" ectype="application/json" action="book_flight">{% csrf_token %}
                     <input style='display:None;' type="textarea" name="json_segment" value="{{leg}}"/>
+                    <input style='display:None;' type="textarea" name="price" value="{{offer.totalPrice.amount}}"/>
+                    <input style='display:None;' type="textarea" name="currency" value="{{offer.totalPrice.currencyCode}}"/>
                     <button class="btn waves-effect waves-light" type="submit" name="action">Book!
                         <i class="material-icons right">send</i>
                 </form>
