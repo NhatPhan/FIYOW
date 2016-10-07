@@ -6,16 +6,22 @@
 {% endblock head %}
 
 {% block body %}
+
     <div class="container">
         <h2 style="text-align:center;">Your booking details:</h2>
         {% for booking in bookings %}
         <div class="container">
-            <ul class="list-group">
-                <li class="list-group-item">From: {{ booking.from_airport }}</li>
-                <li class="list-group-item">To: {{ booking.to_airport }}</li>
-                <li class="list-group-item">Departure: {{ booking.departure_time }}</li>
-                <li class="list-group-item">Arrival: {{ booking.arrival_time }}</li>
-                <li class="list-group-item">Price: {{ booking.price }}</li>
+            <ul class="collection">
+                <li class="collection-item dismissable avatar card blue-grey lighten-4">
+                    From: {{ booking.from_airport }}</li>
+                <li class="collection-item dismissable avatar card blue-grey lighten-4">
+                    To: {{ booking.to_airport }}</li>
+                <li class="collection-item dismissable avatar card blue-grey lighten-4">
+                    Departure: {{ booking.departure_time }}</li>
+                <li class="collection-item dismissable avatar card blue-grey lighten-4">
+                    Arrival: {{ booking.arrival_time }}</li>
+                <li class="collection-item dismissable avatar card blue-grey lighten-4">
+                    Price: {{ booking.price }}</li>
             </ul>
         </div>
         {% endfor %}
