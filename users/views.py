@@ -10,7 +10,7 @@ from django.views.generic import DetailView
 
 from users.forms import SIAUserForm, LocationFormSet
 from users.models import SIAUser
-from bookings.models import Hotel
+from bookings.models import Hotel, AttractionTicket
 from directions.models import Location
 import json
 from string import Template
@@ -175,22 +175,21 @@ def trip(request):
     user = request.user
 
     sia_user = get_object_or_404(SIAUser, user=user)
-    print sia_user
-    print sia_user.id
-    hotels = Hotel.objects.filter(user=sia_user.id)
+    print sia_user.user.id
+    hotels = Hotel.objects.filter(user=sia_user)
+    activities = AttractionTicket.objects.filter(user=sia_user)
     print hotels
-    
-    print "true"
+    print activities
+
     hotelsResponse = []
+    activitiesResponse = []
+    
     for hotel in hotels:
         hotel_id = 'hotelId=' + str(hotel.hotelId)
-        print hotel.hotelId
 
         s = Template('http://terminal2.expedia.com:80/x/mhotels/info?$hotelId')
         search = s.substitute(hotelId=hotel_id) + '&apikey=xVKsMHTYGMyM5xXp2iyIABHnbx3j8l44'
-        print search
         hotel = requests.get(search)
-        newHotelResponse = []
         content = json.loads(hotel.content)
         newHotelResponse = {}
         
@@ -208,10 +207,33 @@ def trip(request):
         
         hotelsResponse.append(newHotelResponse)
     
-    print hotelsResponse
+        hotelsResponse.append(hotel)
+        
+    for activity in activities:
+        
+        print activity.id
+        activity_id = 'activityId=' + str(activity.activityId)
+        start_date = '&startDate=' + str(activity.start_date)
+        end_date = '&endDate=' + str(activity.end_date)
+        
+        s = Template('http://terminal2.expedia.com:80/x/activities/details?$activityId$startDate$endDate')
+        search = s.substitute(activityId=activity_id,
+                startDate=start_date,
+                endDate=end_date) + '&apikey=xVKsMHTYGMyM5xXp2iyIABHnbx3j8l44'
+                
+        response = requests.get(search)
+        content = json.loads(response.content)
+        newActivityResponse = {}
+        
+        activityTitle = content['title']
+        
+        newActivityResponse['title'] = activityTitle
+        
+        activitiesResponse.append(newActivityResponse)
     
+        activitiesResponse.append(activity)
 
-    return render(request, 'users/trip.html', {'SiaUser':sia_user, 'hotels': hotelsResponse })
+    return render(request, 'users/trip.html', {'SiaUser':sia_user, 'hotels': hotelsResponse, 'activities': activitiesResponse })
 
 
 def onflight(request):
@@ -231,6 +253,25 @@ def onflight(request):
     sia_user = get_object_or_404(SIAUser, user=user)
     return render(request, 'users/on-flight.html', {'SiaUser':sia_user})
     
+def onflightfr(request):
+    """
+    On flight view for the user - in fr
+    :param request:
+    :return:
+    """
+    
+    print 'running'
+    
+    # Authentication check
+    if not request.user.is_authenticated():
+        # TODO redirect to error page
+        return redirect(reverse('index'))
+
+    user = request.user
+
+    sia_user = get_object_or_404(SIAUser, user=user)
+    #return render(request, 'users/template.html', {'SiaUser':sia_user})    
+
     
 def arrival(request):
     """

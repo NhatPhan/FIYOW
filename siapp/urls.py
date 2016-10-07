@@ -43,6 +43,7 @@ urlpatterns = [
     url(r'^expedia/package_search', package_search),
     url(r'^expedia/activities_search', activities_search, name='activities-search'),
     url(r'^expedia/activity_details', activity_details),
+    url(r'^expedia/activity_booking', activity_booking, name='activity_booking'),
     url(r'^expedia/unreal_deals', unreal_deals),
 
     # Users
@@ -62,6 +63,7 @@ urlpatterns = [
     
     # On flight
     url(r'^onflight/', onflight, name='onflight'),
+    url(r'^onflight/fr/', onflightfr, name='onflightfr'),
     
     # Arrival
     url(r'^arrival/', arrival, name='arrival'),

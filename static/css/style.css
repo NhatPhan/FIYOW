@@ -89,3 +89,16 @@ footer.page-footer {
   max-width: 80%;
   margin: auto;
 }
+
+.narrower {
+  max-width: 80%;
+  padding-left: 15%;
+}
+
+.menu-choice {
+  font-size: 25px;
+}
+
+.language-selection{
+  margin-top: 20px;
+}

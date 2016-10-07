@@ -9,19 +9,25 @@
     
     <h4 class="card-panel teal lighten-2"><strong> Activities Search Results</strong></h4>
         <ul class="collection">
-        {% for hotel in hotelList %}
+        {% for activity in activities %}
             <li class="collection-item dismissable avatar card blue-grey lighten-4">
-              <img src="http://images.trvl-media.com{{ hotel.largeThumbnailUrl }}" alt="" class="responsive-img circle">
-              <span class="title"><strong>{{ hotel.name }}</strong></span>
-              <p><strong>Address: </strong>{{ hotel.address }} <br>
-                 <strong>Description: </strong>{{ hotel.shortDescription }} <br>
-                 <strong>Total Price Including Fees: </strong>{{ hotel.lowRateInfo.formattedTotalPriceWithMandatoryFees }} <br>
-                 <strong>Discount: </strong>{{ hotel.discountMessage }} <br>
-                 <strong>Guest Rating: </strong>{{ hotel.hotelGuestRating }} <br>
-                 <strong>Hotel Start Rating: </strong>{{ hotel.hotelStarRating }} <br>
+              <img src="{{ activity.largeImageURL }}" alt="" class="responsive-img circle">
+              <span class="title"><strong>{{ activity.title }}</strong></span>
+              <p><strong>Hosted by: </strong>{{ activity.supplierName }} <br>
+                 <strong>From: </strong>{{ activity.fromPrice }} {{ activity.fromPriceLabel }} <br>
+                 <strong>Categories: </strong>
+                 <ul class="collection">
+                {% for category in activity.categories %}
+                    <li class="collection-item dismissable">
+                        {{ category }}
+                    </li>
+                {% endfor %}
+                </ul>
               </p>
-            <form method="POST" ectype="application/json" action="hotel_booking">{% csrf_token %}
-                <input style="display: none;" type="text" name="hotelId" value="{{ hotel.hotelId }}"/>
+            <form method="POST" ectype="application/json" action="activity_booking">{% csrf_token %}
+                <input style="display: none;" type="text" name="activityId" value="{{ activity.id }}"/>
+                <input type=date name="start_date"/>
+                <input type="date" name="end_date"/>
                 <button class="btn waves-effect waves-light" type="submit" name="action">Book!
                 <i class="material-icons right">send</i>
             </form>
