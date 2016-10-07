@@ -6,24 +6,30 @@
 {% endblock head %}
 
 {% block body %}
-
-    {% for offer in offers %}
-    <div style="background-color: cyan" class="displayResult">
-        <p>Total Price: {{offer.totalPrice.currencyCode}}{{ offer.totalPrice.formattedPrice}}</p>
-        <p>Seats remaining: {{offer.seatsRemaining}}</p>
-        <p>Duration {{ leg.travelDuration }} </p>
-        {% for leg in legs %}
-            {% if leg.legId == offer.legIds.0%}
-                <form method="POST" ectype="application/json" action="book_flight">{% csrf_token %}
-                    <input style='display:None;' type="textarea" name="json_segment" value="{{leg}}"/>
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Book!
-                        <i class="material-icons right">send</i>
-                </form>
-            {% endif %}
+    <div class ="hotel-search-result">
+        <h4 class="card-panel teal lighten-2"><strong>Flight Search Results</strong></h4>
+        <ul class="collection">
+        {% for offer in offers %}
+            <li class="collection-item dismissable avatar card blue-grey lighten-4">
+                    <strong>Total Price: </strong> {{offer.totalPrice.currencyCode}}{{ offer.totalPrice.formattedPrice}}<br>
+                    <strong>Seats remaining: </strong> {{offer.seatsRemaining}}<br>
+                    {% for leg in legs %}
+                        {% if leg.legId == offer.legIds.0%}
+                            <strong>Duration: </strong> {{ leg.travelDuration }} <br>
+                            <form method="POST" ectype="application/json" action="book_flight">{% csrf_token %}
+                                <input style='display:None;' type="textarea" name="json_segment" value="{{leg}}"/>
+                                <input style='display:None;' type="textarea" name="price" value="{{offer.totalPrice.amount}}"/>
+                                <input style='display:None;' type="textarea" name="currency" value="{{offer.totalPrice.currencyCode}}"/>
+                                <button class="btn waves-effect waves-light" type="submit" name="action">Book!
+                                    <i class="material-icons right">send</i></button>
+                            </form>
+                        {% endif %}
+                    {% endfor %}
+            </li>
+            <br>
         {% endfor %}
-
+        </ul>
     </div>
-    {% endfor %}
 
 {% endblock body %}
 
