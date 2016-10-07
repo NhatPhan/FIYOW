@@ -24,7 +24,7 @@ def baggageForPassenger(request):
     custom_headers = { 'Accept-Charset': 'UTF-8',
         'CONTENT-TYPE' : 'application/json',
         'Accept' : 'application/json',
-        'api_key' : '7989ca6cbadb38855a6112a2eab0d594' 
+        'api_key' : '2ad03198b7287e91a44d213e696bbb4b'
     }
         
     query = s.substitute(pnr=pnr,dep_flight_date=dep_flight_date) + 'prettyPrint=true&apikey=7989ca6cbadb38855a6112a2eab0d594'
