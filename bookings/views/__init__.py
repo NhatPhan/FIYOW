@@ -6,6 +6,6 @@ from hotel_offers import hotel_offers
 from hotel_info import hotel_info
 from hotel_booking import hotel_booking
 from package_search import package_search
-from activities import activities_search, activity_details
+from activities import activities_search, activity_details, activity_booking
 from unreal_deals import unreal_deals
 from book_flight import book_flight

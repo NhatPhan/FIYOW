@@ -24,9 +24,10 @@ class AttractionTicket(models.Model):
     Representation of a attraction
     """
     user = models.ForeignKey(SIAUser, null=True)
-    name = models.CharField(max_length=200, null=True)
-    description = models.CharField(max_length=200, null=True)
-    price = models.FloatField(null=True)
+    activityId = models.IntegerField(null=True)
+    start_date = models.CharField(max_length=200, null=True)
+    end_date = models.CharField(max_length=200, null=True)
+
     
 class Hotel(models.Model):
     """
