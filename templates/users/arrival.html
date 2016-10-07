@@ -23,9 +23,20 @@
     <li>
       <div class="collapsible-header"><i class="material-icons">filter_drama</i>Baggage Check</div>
       <div class="collapsible-body">
-          <p>Your baggage has arrived!</p>
-        
-        </div>
+          {% for booking_id, baggages in bookings %}
+          <h4 class="card-panel teal lighten-2"><strong>Booking ID: {{ booking_id }}</strong></h4>
+            <ul class="collection">
+                {% for baggage in baggages %}
+                        <li class="collection-item dismissable avatar card blue-grey lighten-4">
+                        <p><strong>Baggage ID: </strong>{{ baggage.id }}<br>
+                            <strong>Weight: </strong>{{ baggage.weight }}<br>
+                            <strong>Color: </strong>{{ baggage.color }}<br>
+                            <strong>Status: </strong>{{ baggage.status }}</p>
+                        </li>
+                {% endfor %}
+            </ul>
+          {% endfor %}
+      </div>
     </li>
     <li>
       <div class="collapsible-header"><i class="material-icons">place</i>Share Taxi</div>
@@ -33,7 +44,7 @@
 
         <div id="map-canvas"></div>
 
-        <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArB82fVC8XkEhDgY0_lX1s5F4YW4QqWKI&v=3&sensor=false"></script>
         <script>
             function initialize() {
                 var map = new google.maps.Map(document.getElementById('map-canvas'));

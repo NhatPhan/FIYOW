@@ -18,7 +18,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from bookings.views import *
 from users.views import *
-from baggages.views import baggageStatus
+from baggages.views import baggageStatus, addBaggageForBooking
 from directions.views import *
 from chat.views import chat_view
 
@@ -54,6 +54,7 @@ urlpatterns = [
 
     # Baggage
     url(r'^user/baggages$', baggageStatus),
+    url(r'^add_baggages$', addBaggageForBooking),
 
     # Direction
     url(r'^map$', poi_list , name='poi_list'),
