@@ -58,7 +58,9 @@ def flight_search(request, format=None):
         response = requests.get(search)
         content = json.loads(response.content)
         return Response(content, status=response.status_code, template_name='bookings/flight-search-result.html')
-
+        #return Response(content, status=response.status_code)
+        
+        
     # Search form
     else:
         return render(request, 'bookings/flight-search.html')

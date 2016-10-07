@@ -3,7 +3,7 @@ from .models import Location
 
 
 class LocationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'position', 'position_map',)
+    list_display = ('location_name', 'position', 'position_map',)
 
     def position_map(self, instance):
         if instance.position is not None:

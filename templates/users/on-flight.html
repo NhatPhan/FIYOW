@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head %}
+  <title>SIA Challenge</title>
+{% endblock head %}
+
+{% block catchline %}
+    Your trip to Singapore
+{% endblock catchline %}
+
+
+{% block body %}
+
+    <div class="trip-info-holder">
+    <ul class="collapsible popout" data-collapsible="accordion">\
+    
+     <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Movies</div>
+      <div class="collapsible-body"><p><a href="{% url 'activities-search' %}">Book new attractions</a></p></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>Menu</div>
+      <div class="collapsible-body"><p><a href="{% url 'flight-search' %}">Book new flights</a> </p></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Souvenier</div>
+      <div class="collapsible-body"><p><a href="{% url 'flight-search' %}">Book new hotel</a> </p></div>
+    </li>
+   
+  </ul>
+</div>
+
+
+<script type="text/javascript">
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year
+        format: 'yyyy-mm-dd',
+    });
+
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+</script>
+
+{% endblock body %}
+

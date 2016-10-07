@@ -38,7 +38,7 @@ urlpatterns = [
     url(r'^expedia/hotel_offers', hotel_offers),
     url(r'^expedia/hotel_info', hotel_info),
     url(r'^expedia/package_search', package_search),
-    url(r'^expedia/activities_search', activities_search),
+    url(r'^expedia/activities_search', activities_search, name='activities-search'),
     url(r'^expedia/activity_details', activity_details),
     url(r'^expedia/unreal_deals', unreal_deals),
 
@@ -53,5 +53,11 @@ urlpatterns = [
 
     # Chat
     url(r'^chat/', chat_view),
+    
+    # On flight
+    url(r'^onflight/', onflight, name='onflight'),
+    
+    # Arrival
+    url(r'^arrival/', arrival, name='arrival'),
 ]
 

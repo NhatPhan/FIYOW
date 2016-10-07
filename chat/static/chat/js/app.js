@@ -253,7 +253,7 @@
 		socket: null,
 
 		createSocket: function createSocket() {
-			var url = 'ws://' + location.hostname + ':8000/chat/' + this.state.channel + '?username=' + this.state.author;
+			var url = 'wss://' + window.location.hostname + '/chat/' + this.state.channel + '?username=' + this.state.author;
 
 			this.socket = new WebSocket(url);
 

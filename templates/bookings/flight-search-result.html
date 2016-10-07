@@ -7,7 +7,12 @@
 
 {% block body %}
 
-    {{ activityId }}
+    {% for offer in offers %}
+    <p>
+      {{ legs.i }} </br>
+      {{ offer.totalPrice.amount }} : {{offer.totalPrice.currencyCode}}
+    </p>
+    {% endfor %}
 
 {% endblock body %}
 
