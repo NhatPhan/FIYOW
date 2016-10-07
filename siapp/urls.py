@@ -62,8 +62,8 @@ urlpatterns = [
     url(r'^chat/', chat_view, name='chat'),
     
     # On flight
-    url(r'^onflight/', onflight, name='onflight'),
-    url(r'^onflight/fr/', onflightfr, name='onflightfr'),
+    url(r'^onflight/$', onflight, name='onflight'),
+    url(r'^onflight/fr/$', onflightfr, name='onflightfr'),
     
     # Arrival
     url(r'^arrival/', arrival, name='arrival'),

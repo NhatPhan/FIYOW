@@ -200,9 +200,14 @@ def trip(request):
         hotelAddress = content['hotelAddress']
         telesalesNumber = content['telesalesNumber']
         
+        if 'largeThumbnailUrl' in content:
+            image = content['largeThumbnailUrl']
+            newHotelResponse['image'] = image
+        
         newHotelResponse['hotelName'] = hotelName
         newHotelResponse['hotelAddress'] = hotelAddress
         newHotelResponse['telesalesNumber'] = telesalesNumber
+        
 
         
         hotelsResponse.append(newHotelResponse)
@@ -260,8 +265,6 @@ def onflightfr(request):
     :return:
     """
     
-    print 'running'
-    
     # Authentication check
     if not request.user.is_authenticated():
         # TODO redirect to error page
@@ -270,7 +273,7 @@ def onflightfr(request):
     user = request.user
 
     sia_user = get_object_or_404(SIAUser, user=user)
-    #return render(request, 'users/template.html', {'SiaUser':sia_user})    
+    return render(request, 'users/on-flight-fr.html', {'SiaUser':sia_user})    
 
     
 def arrival(request):
