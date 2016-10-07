@@ -10,7 +10,7 @@ from django.views.generic import DetailView
 
 from users.forms import SIAUserForm, LocationFormSet
 from users.models import SIAUser
-from bookings.models import Hotel, AttractionTicket
+from bookings.models import Hotel, AttractionTicket, Booking
 from directions.models import Location
 import json
 from string import Template
@@ -175,15 +175,14 @@ def trip(request):
     user = request.user
 
     sia_user = get_object_or_404(SIAUser, user=user)
-    print sia_user.user.id
     hotels = Hotel.objects.filter(user=sia_user)
     activities = AttractionTicket.objects.filter(user=sia_user)
-    print hotels
-    print activities
+    bookings = Booking.objects.filter(user=sia_user)
 
     hotelsResponse = []
     activitiesResponse = []
-    
+
+
     for hotel in hotels:
         hotel_id = 'hotelId=' + str(hotel.hotelId)
 
@@ -233,7 +232,11 @@ def trip(request):
     
         activitiesResponse.append(activity)
 
-    return render(request, 'users/trip.html', {'SiaUser':sia_user, 'hotels': hotelsResponse, 'activities': activitiesResponse })
+    return render(request, 'users/trip.html',
+                  {'SiaUser':sia_user,
+                   'bookings': bookings,
+                   'hotels': hotelsResponse,
+                   'activities': activitiesResponse })
 
 
 def onflight(request):
