@@ -7,7 +7,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.views.generic.edit import ModelFormMixin
 from django.views.generic import DetailView
+from rest_framework import serializers
 
+from baggages.models import Baggage
 from users.forms import SIAUserForm, LocationFormSet
 from users.models import SIAUser
 from bookings.models import Hotel, AttractionTicket, Booking
@@ -17,7 +19,10 @@ from string import Template
 
 import requests
 from rest_framework.decorators import api_view
+from collections import defaultdict
 from rest_framework.response import Response
+
+from datetime import datetime
 
 def test(request):
     """
@@ -290,7 +295,7 @@ def onflightfr(request):
     sia_user = get_object_or_404(SIAUser, user=user)
     return render(request, 'users/on-flight-fr.html', {'SiaUser':sia_user})    
 
-    
+@api_view(['GET'])
 def arrival(request):
     """
     On arrival view for the user
@@ -306,5 +311,20 @@ def arrival(request):
     user = request.user
 
     sia_user = get_object_or_404(SIAUser, user=user)
+
+    # baggage
+
+    result = []
+    bookings = Booking.objects.filter(user=sia_user)
+    for booking in bookings:
+        baggages = Baggage.objects.filter(booking=booking)
+        if len(baggages) > 0:
+            result.append((booking.id, baggages))
+
+    print(result)
+
+
+    # taxi
     pois = Location.objects.all()
-    return render(request, 'users/arrival.html', {'SiaUser':sia_user, 'pois': pois} )
+    return render(request, 'users/arrival.html',
+                  {'SiaUser':sia_user, 'pois': pois, 'bookings': result} )

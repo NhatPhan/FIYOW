@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head %}
+  <title>SIA Challenge</title>
+{% endblock head %}
+
+{% block catchline %}
+    Where do you want to go?
+{% endblock catchline %}
+
+{% block body %}
+    <form class="col s12 flight-form" method="POST" ectype="application/json">{% csrf_token %}
+        {% if booking_id %}
+        <div>
+            {{ sticker }}{{ booking_id }}
+        </div>
+        {% endif %}
+        <div class="input-field">
+            <input name="booking_id" type="text" placeholder="Booking ID">
+        </div>
+        <div class="input-field">
+            <input name="weight" type="text" placeholder="Baggage Weight">
+        </div>
+        <div class="input-field">
+            <input name="color" type="text" placeholder="Baggage Color">
+        </div>
+        <div class="input-field">
+            <input name="status" type="text" placeholder="To be loaded">
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Add!
+        <i class="material-icons right">send</i>
+        </button>
+    </form>
+
+{% endblock body %}
+

@@ -36,6 +36,6 @@ def book_flight(request):
                               departure_time=dep_time , arrival_time=arr_time , price=price_per_segment)
             booking.save()
             bookings.append(booking.as_json())
-        response = {'bookings': bookings}
+        response = {'bookings': bookings, 'currency': currency}
         return Response(response, template_name='bookings/booking_result.html')
 

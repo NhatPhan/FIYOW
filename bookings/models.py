@@ -16,6 +16,7 @@ class Booking(models.Model):
     arrival_time = models.DateTimeField(null=True)
     price = models.FloatField(null=True)
 
+
     class Meta:
         ordering = ['departure_time']
 
